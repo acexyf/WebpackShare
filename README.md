@@ -12,3 +12,5 @@ loader安装
 - demo4
 插件
 
+- demo5
+DevServer
