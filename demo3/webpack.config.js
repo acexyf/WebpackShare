@@ -10,7 +10,7 @@ module.exports = {
             test: /\.js$/,
             loader: 'babel-loader',
             exclude: /(node_modules|bower_components)/,
-            include: path.resolve(__dirname, "./src"),
+            include: path.resolve(__dirname, './src'),
             query: {
                 presets: ['es2015'],
                 plugins: ['transform-runtime']
