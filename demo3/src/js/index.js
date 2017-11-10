@@ -1,4 +1,4 @@
-// require('../css/index.css');
+require('../css/index.css');
 
 (function(){
     let [a=3,b=2,c=1] = [1,2,3];
