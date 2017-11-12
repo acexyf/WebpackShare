@@ -4,22 +4,27 @@ const webpack = require('webpack');
 //将css单独抽离的工具
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
     entry: {
-        main: './src/entry.js',
-        vendor: 'moment'
+        main: [
+            './src/entry.js'
+        ]
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'js/[name].bundle.js'
     },
     devServer: {
-        contentBase: path.join(__dirname, 'src'),
+        contentBase: path.join(__dirname, 'server'),
+        //开启gzip压缩
         compress: true,
         port: 8093,
-        hot: true,
+        inline: true,
+        hot: true, //模块热替换特性
     },
+    devtool: '#cheap-module-eval-source-map',
     module: {
         rules: [{
             //样式加载器，同时抽离css样式
@@ -46,26 +51,25 @@ module.exports = {
             test: /\.(png|jpg|gif)$/,
             loader: 'url-loader',
             options: {
-                name: 'img/[name].[hash:7].[ext]',
+                name: 'imgs/[name].[ext]',
                 limit: 10000
             }
         }]
     },
     plugins: [
-        // new webpack.optimize.CommonsChunkPlugin({
-        //     name: 'vendor' // 指定公共 bundle 的名字。
-        // }),
-        // //压缩js代码
-        // new webpack.optimize.UglifyJsPlugin(),
+        //模块热替换
+        new webpack.HotModuleReplacementPlugin(),
         //提取css文件
         new ExtractTextPlugin({
             filename: 'css/[name].bundle.css',
             disable: false,
             allChunks: true
         }),
-        // //生成html文件
-        // new HtmlWebpackPlugin({
-        //     template: __dirname + '/index.html'
-        // })
+        new HtmlWebpackPlugin({
+            filename: 'index.html',
+            template: 'index.html',
+            inject: true
+        }),
+
     ]
 }
