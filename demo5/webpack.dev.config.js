@@ -17,6 +17,7 @@ module.exports = {
         filename: 'js/[name].bundle.js'
     },
     devServer: {
+        host: '0.0.0.0',
         contentBase: path.join(__dirname, 'server'),
         //开启gzip压缩
         compress: true,
