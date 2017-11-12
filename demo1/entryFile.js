@@ -1,3 +1,5 @@
 let module1 = require('./module1');
-document.writeln('this is entry file')
-document.writeln(module1.name)
+let module2 = require('./module2');
+document.writeln('this is entry file<br>')
+module1();
+module2();
