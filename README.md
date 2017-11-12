@@ -6,7 +6,7 @@
 多入口
 
 - demo3
-loader安装
+loader配置
 
 
 - demo4
