@@ -1,11 +1,9 @@
 const path = require('path');
+
+const webpack = require('webpack');
 //将css单独抽离的工具
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-const webpack = require('webpack');
-
-//生成一个自动引用打包后文件的html
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     entry: {
@@ -15,6 +13,12 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'js/[name].bundle.js'
+    },
+    devServer: {
+        contentBase: path.join(__dirname, 'src'),
+        compress: true,
+        port: 8093,
+        hot: true,
     },
     module: {
         rules: [{
@@ -48,20 +52,20 @@ module.exports = {
         }]
     },
     plugins: [
-        new webpack.optimize.CommonsChunkPlugin({
-            name: 'vendor' // 指定公共 bundle 的名字。
-        }),
-        //压缩js代码
-        new webpack.optimize.UglifyJsPlugin(),
+        // new webpack.optimize.CommonsChunkPlugin({
+        //     name: 'vendor' // 指定公共 bundle 的名字。
+        // }),
+        // //压缩js代码
+        // new webpack.optimize.UglifyJsPlugin(),
         //提取css文件
         new ExtractTextPlugin({
             filename: 'css/[name].bundle.css',
             disable: false,
             allChunks: true
         }),
-        //生成html文件
-        new HtmlWebpackPlugin({
-            template: __dirname + '/index.html'
-        })
+        // //生成html文件
+        // new HtmlWebpackPlugin({
+        //     template: __dirname + '/index.html'
+        // })
     ]
 }
