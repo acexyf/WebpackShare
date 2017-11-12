@@ -8,29 +8,12 @@ module.exports = {
     },
     module: {
         rules: [{
-                test: /\.css$/,
-                use: ExtractTextPlugin.extract({
-                    use: [{
-                        loader: "css-loader"
-                    }],
-                })
-            }, { // 对所有 .less 文件使用 style-loader css-loader less-loader
-                test: /\.less$/,
+                test: /\.(css|less)$/,
                 use: ExtractTextPlugin.extract({
                     use: [{
                         loader: "css-loader"
                     }, {
                         loader: "less-loader"
-                    }],
-                })
-            },
-            { // 对所有 .scss 文件使用 style-loader css-loader sass-loader
-                test: /\.scss$/,
-                use: ExtractTextPlugin.extract({
-                    use: [{
-                        loader: "css-loader"
-                    }, {
-                        loader: "sass-loader"
                     }],
                 })
             }, {

@@ -1,6 +1,19 @@
+@widths: 200px;
+@block_size: 50px;
+
 .home{
-    height: 200px;
+    height: @widths;
     background: url(../imgs/loading.png) center;
     background-repeat: no-repeat;
-    background-size: 200px 200px;
+    background-size: @widths @widths;
+}
+
+.banner{
+    height: @widths;
+    background: #ccc;
+    .block{
+        width: @block_size;
+        height: @block_size;
+        background: red;
+    }
 }
