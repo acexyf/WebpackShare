@@ -2,7 +2,7 @@ const path = require('path');
 //将css单独抽离的工具
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 module.exports = {
-    entry: './src/entry.js',
+    entry: ['./src/entry.js', './src/extend.ts'],
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'js/[name].bundle.js'
@@ -28,6 +28,9 @@ module.exports = {
                     presets: ['es2015'],
                     plugins: ['transform-runtime']
                 }
+            },{
+                test: /\.ts$/,
+                loader: 'ts-loader'
             }, {
                 //图片加载器
                 test: /\.(png|jpg|gif)$/,
