@@ -6,12 +6,12 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
+const open = require('open')
+
+const port = 8093;
+
 module.exports = {
-    entry: {
-        main: [
-            './src/entry.js'
-        ]
-    },
+    entry: './src/entry.js',
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'js/[name].bundle.js'
@@ -21,7 +21,7 @@ module.exports = {
         contentBase: path.join(__dirname, 'server'),
         //开启gzip压缩
         compress: true,
-        port: 8093,
+        port: port,
         inline: true,
         hot: true, //模块热替换特性
     },
@@ -74,3 +74,23 @@ module.exports = {
 
     ]
 }
+
+
+/**
+ * 获取本机IP
+ * @return {[string]} [IP地址]
+ */
+function getIPAdress() {
+    var interfaces = require('os').networkInterfaces();
+    for (var devName in interfaces) {
+        var iface = interfaces[devName];
+        for (var i = 0; i < iface.length; i++) {
+            var alias = iface[i];
+            if (alias.family === 'IPv4' && alias.address !== '127.0.0.1' && !alias.internal) {
+                return alias.address;
+            }
+        }
+    }
+}
+
+open(`http://${getIPAdress()}:${port}`)
