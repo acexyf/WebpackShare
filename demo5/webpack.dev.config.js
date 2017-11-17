@@ -8,6 +8,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const open = require('open')
 
+const ip = getIPAdress();
+
 const port = 8093;
 
 module.exports = {
@@ -24,6 +26,9 @@ module.exports = {
         port: port,
         inline: true,
         hot: true, //模块热替换特性
+        proxy: {
+            "/api": `http://${ip}:3000/api/`
+        }
     },
     devtool: '#cheap-module-eval-source-map',
     module: {
@@ -93,4 +98,4 @@ function getIPAdress() {
     }
 }
 
-open(`http://${getIPAdress()}:${port}`)
+open(`http://${ip}:${port}`)
