@@ -1,8 +1,11 @@
 
 import bar from './bar';
+import { getName } from 'utils/index'
 bar();
 
 
+
+console.log(getName())
 
 async function init() {
     console.log(1)
