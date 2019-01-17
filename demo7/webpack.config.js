@@ -27,7 +27,15 @@ module.exports = {
                       publicPath: 'http://10.101.62.43:11322/output/img/webpack/img/'
                     }
                   },
-                  "css-loader"
+                  "css-loader",
+                  {
+                      loader: "postcss-loader",
+                      options: {
+                        // plugins: [
+                        //     require('autoprefixer')
+                        // ]
+                      }
+                  }
                 ]
             },{
                 test: /\.(png|jpg|jpeg|gif)$/,
