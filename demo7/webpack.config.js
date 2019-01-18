@@ -48,6 +48,12 @@ module.exports = {
                         publicPath: 'http://10.101.62.43:11322/output/img/webpack/img/'
                     }
                 }]
+            },{
+                test: /\.(jsx|js)$/,
+                use: {
+                    loader: 'babel-loader',
+                },
+                exclude:/node_modules/
             }
         ],
     },
