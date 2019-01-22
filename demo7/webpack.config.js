@@ -14,7 +14,7 @@ module.exports = {
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: '[name]/bundle.js',
+        filename: '[name]/bundle.[contenthash:8].js',
         publicPath: ''
     },
     module: {
@@ -43,7 +43,7 @@ module.exports = {
                     loader: 'url-loader',
                     options: {
                         limit: 3000,
-                        name: '[hash:8].[ext]',
+                        name: '[contenthash:8].[ext]',
                         outputPath: 'img/',
                         publicPath: 'http://10.101.62.43:11322/output/img/webpack/img/'
                     }
@@ -74,7 +74,7 @@ module.exports = {
             chunks: ['list']
         }),
         new MiniCssExtractPlugin({
-            filename: "[name]/bundle.css",
+            filename: "[name]/bundle.[contenthash:8].css",
             chunkFilename: "[id].css"
         }),
     ]
