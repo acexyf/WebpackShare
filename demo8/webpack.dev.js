@@ -33,10 +33,16 @@ module.exports = {
         rules: [
             {
                 test: /\.css$/,
-                use: [{
-                    loader: MiniCssExtractPlugin.loader,
+                use: [
+                  {
+                    loader: "style-loader"
                   },
-                  "css-loader",
+                  {
+                    loader: "css-loader",
+                    options:{
+                        importLoaders: 2
+                    }
+                  },
                   {
                       loader: "postcss-loader",
                   }
@@ -45,20 +51,25 @@ module.exports = {
                 test: /\.less$/,
                 use:[
                     {
-                        loader: MiniCssExtractPlugin.loader,
+                        loader: "style-loader"
                     },
-                    "css-loader",
-                    "less-loader",
+                    {
+                        loader: "css-loader",
+                        options:{
+                            importLoaders: 2
+                        }
+                    },
                     {
                         loader: "postcss-loader",
-                    }
+                    },
+                    "less-loader",
                 ]
             },{
                 test: /\.(png|jpg|jpeg|gif)$/,
                 use: [{
                     loader: 'url-loader',
                     options: {
-                        limit: 3000,
+                        limit: 500,
                         name: '[contenthash:8].[ext]',
                         outputPath: 'img/',
                         // publicPath: 'http://10.101.62.43:11322/output/img/webpack/img/'

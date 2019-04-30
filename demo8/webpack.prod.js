@@ -26,6 +26,9 @@ module.exports = {
                   },
                   {
                       loader: "css-loader",
+                      options:{
+                        importLoaders: 2
+                    }
                   },
                   {
                       loader: "postcss-loader",
@@ -39,18 +42,21 @@ module.exports = {
                     },
                     {
                         loader: "css-loader",
+                        options:{
+                            importLoaders: 2
+                        }
                     },
-                    "less-loader",
                     {
                         loader: "postcss-loader",
-                    }
+                    },
+                    "less-loader",
                 ]
             },{
                 test: /\.(png|jpg|jpeg|gif)$/,
                 use: [{
                     loader: 'url-loader',
                     options: {
-                        limit: 3000,
+                        limit: 500,
                         name: '[contenthash:8].[ext]',
                         outputPath: 'img/',
                     }
